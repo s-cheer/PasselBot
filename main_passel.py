@@ -565,6 +565,9 @@ async def on_message(message):
             guildsdesc += guild.name + ": " + str(guild.id) + "\n"
         await message.channel.send('Joined Servers: ' + str(len(guildsJoined)) + guildsdesc)
 
+    # can only be used my me to get the server photo if anyone wants their server on https://passelbot.wixsite.com/home/featured-servers
+    if message.content.lower() == 'p.serverphoto' and message.author.id == 454342857239691306:
+        await message.channel.send(str(message.guild.icon_url))
 
 # The method that takes care of pin updates in a server
 @client.event
