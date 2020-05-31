@@ -23,7 +23,7 @@ Also, any channel that has 50 pins should have one message unpinned, and then re
 1. make sure the bot has access to view and type in the channels of the server
 2. unpin one message from channels with 50 pins, and repin that after setup (you can use p.pins to check how many pins are in a chhannel)
 
-#Setup
+# Setup
 To set up you need to have administrator permissions and meet the pre-requisites above.
 
 1. First create a channel that you want the extra pinned messages in, this channel can be named anything (I will call it pins for the purpose of the readme.md file)
