@@ -76,8 +76,8 @@ The following will show how the bot embeds the pinned messages in a server!
 
 # Contact
 Contact information can be found on the website https://passelbot.wixsite.com/home
-Email: passelBot@gmail.com
-Discord User ID: ¬sanj#2714
+- Email: passelBot@gmail.com
+- Discord User ID: ¬sanj#2714
 
 ![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/PasselBandWSmall.png)
 
