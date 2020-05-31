@@ -56,17 +56,27 @@ That concludes setup! If you have any issues please visit the website mentioned 
 
 # All Commands
 **Commands:**
-- p.info: To see information about modes and more information about me.
-- p.invite: To invite me to your server
-- p.pins: To see the number of pins in thatt specific channel
+
+```p.info: To see information about modes and more information about me.```
+
+```p.invite: To invite me to your server```
+
+```p.pins: To see the number of pins in thatt specific channel```
+
 
 **Commands below require administrator permissions**
-- p.setup: To set up the bot in your server
-- p.channel: To see your setup channel
-- p.mode: To see your set up mode
-- p.changechannel <channel>: To change channel of archived pins
-- p.changemode <mode>: To change the mode
-- p.blacklist: Type p.blacklist in a specific channel to blacklist that channel
+
+```p.setup: To set up the bot in your server```
+
+```p.channel: To see your setup channel```
+
+```p.mode: To see your set up mode```
+
+```p.changechannel <channel>: To change channel of archived pins```
+
+```p.changemode <mode>: To change the mode```
+
+```p.blacklist: Type p.blacklist in a specific channel to blacklist that channel```
 
 # Images
 The following will show how the bot embeds the pinned messages in a server!
