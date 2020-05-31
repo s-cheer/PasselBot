@@ -44,8 +44,8 @@ here is an example:
 That concludes setup! If you have any issues please visit the website mentioned above, the website has videos that are easy to follow and set up the bot.
 
 **The channel and mode can be changed at any time after setup use:**
-		p.changemode <mode>
-		p.changechannel <#channel>
+- p.changemode <mode>
+- p.changechannel <#channel>
 
 # All Commands
 **Commands:**
