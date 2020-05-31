@@ -10,7 +10,7 @@ from googleapiclient.http import MediaFileUpload
 from random import randrange
 
 # Author: Sanjana (¬sanj#2714) discord user
-# Created:
+# Created: 26 MAY 2020
 # Last updated: 29 MAY 2020
 # About: Passel Bot is a solution to the number of limited number of pins in a discord server.
 #        It manages pins in 2 modes, Mode 1 and Mode 2. Passel is run on Heroku and
