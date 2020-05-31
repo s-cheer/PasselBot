@@ -1,16 +1,16 @@
-#About
+# About
 Passel is a discord bot that manages the number of pins in a server. Discord has a pin limit of 50 pins per channel. However with passel, that limit can be bypassed. The following readme will explain how the bot works and how to add and setup the bot in a server.
 
-![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/PasselLogoColor.png)
+![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/PasselColorSmall.png)
 
-#Invite
+# Invite
 The bot can be invited by following this link: https://discord.com/oauth2/authorize?client_id=714899096015732886&permissions=388208&scope=bot 
 
 The support server is: https://discord.gg/wmSsKCX 
 
 The bot website is: https://passelbot.wixsite.com/home
 
-#How it works / setup
+# How it works / setup
 The bot works by unpinning one message and sending it to a different channel during setup. There are 2 modes the bot can be setup in. 
 
 Inorder for the bot to work properly, I reccomend giving the bot a role with administrator permission so the bot has access to view every channel. If you do not give the bot administrator permissions, Make sure that the bot has access to read and be able to type in the channels that you set up the bot in.
@@ -47,7 +47,7 @@ That concludes setup! If you have any issues please visit the website mentioned 
 		p.changemode <mode>
 		p.changechannel <#channel>
 
-#All Commands
+# All Commands
 **Commands:**
 - p.info: To see information about modes and more information about me.
 - p.invite: To invite me to your server
@@ -74,11 +74,11 @@ The following will show how the bot embeds the pinned messages in a server!
 
 ![Image Embed](https://github.com/sanjana0109/PasselBot/blob/master/ImageEmbed.png)
 
-#Contact
+# Contact
 Contact information can be found on the website https://passelbot.wixsite.com/home
 Email: passelBot@gmail.com
 Discord User ID: ¬sanj#2714
 
-![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/PasselLogoBandW.png)
+![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/PasselBandWSmall.png)
 
-###End
+### End
