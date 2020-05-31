@@ -35,17 +35,24 @@ To set up you need to have administrator permissions and meet the pre-requisites
 	> 2. In mode 2, the oldest pinned message in a channel is sent into the pins channel and un-pinned, and then the most recently pinned message stays in that channel. For example, if "Hello" is the most recent pinned message, and "Hello World is the oldest pinned message in that same channel. "Hello World" is unpiined and sent into the pins channel, and "Hello" is under the pinned messages in the channel.
 
 3. After you select a mode, simply type this to set up the bot. 
-		p.setup <mode> #channel
+
+```p.setup <mode> #channel```
+
 here is an example:
-		p.setup 1 #pins
+
+```p.setup 1 #pins```
+
 
 4. **[Optional] ** you can use the p.blacklist command in a specific channel to blacklist that channel from having extra pinned messages into the pins channel
 
 That concludes setup! If you have any issues please visit the website mentioned above, the website has videos that are easy to follow and set up the bot.
 
 **The channel and mode can be changed at any time after setup use:**
-- p.changemode <mode>
-- p.changechannel <#channel>
+
+```p.changemode <mode>```
+
+```p.changechannel <#channel>```
+
 
 # All Commands
 **Commands:**
