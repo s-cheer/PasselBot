@@ -44,6 +44,7 @@ here is an example:
 
 
 4. **[Optional] ** you can use the p.blacklist command in a specific channel to blacklist that channel from having extra pinned messages sent into the pins channel
+
 example:
 ```p.blacklist``` type that in #mod-general if you do not want extra pinned messages from that channel being sent to #pins
 
