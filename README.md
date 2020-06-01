@@ -45,8 +45,8 @@ here is an example:
 
 4. **[Optional] ** you can use the p.blacklist command in a specific channel to blacklist that channel from having extra pinned messages sent into the pins channel
 
-example:
-```p.blacklist``` type that in #mod-general if you do not want extra pinned messages from that channel being sent to #pins
+	example:
+	```p.blacklist``` type that in #mod-general if you do not want extra pinned messages from that channel being sent to #pins
 
 That concludes setup! If you have any issues please visit the website mentioned above, the website has videos that are easy to follow and set up the bot.
 
