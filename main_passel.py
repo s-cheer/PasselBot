@@ -26,6 +26,9 @@ from random import randrange
 #        Mode 2: In mode 2, the oldest pinned message gets sent to a pins archive channel of
 #        your choice. This means that the most recent pin will be viewable in the pins tab, and
 #        the oldest pin will be unpinned and put into the pins archive channel
+#
+#        Furthermore: the p.sendall feature described later in the code allows the user to set
+#        Passel so that all pinned messages get sent to the pins archive channel.
 
 client = discord.Client(status='Online')
 
@@ -253,7 +256,7 @@ async def on_message(message):
             await message.channel.send(
                 "You have already set up a channel to send messages: " + message.author.guild.get_channel(int(
                     data[message.author.guild.id][
-                        1])).mention + "\nTo change channel or mode use p.changechannel <channel> or p.changemode "
+                        2])).mention + "\nTo change channel or mode use p.changechannel <channel> or p.changemode "
                                        "<mode>" + "\nTo view use p.channel or p.mode")
             return
 
@@ -332,7 +335,7 @@ async def on_message(message):
             await message.channel.send(
                 "You have already set up a channel to send messages: " + message.author.guild.get_channel(int(
                     data[message.author.guild.id][
-                        1])).mention + "\nTo change channel or mode use p.changechannel <channel> or p.changemode <mode>" + "\nTo view use p.channel or p.mode")
+                        2])).mention + "\nTo change channel or mode use p.changechannel <channel> or p.changemode <mode>" + "\nTo view use p.channel or p.mode")
             return
 
         randomColor = randrange(len(EMBED_COLORS))
@@ -598,7 +601,6 @@ async def on_message(message):
 
         # changes so that all pins can be sent
         if int(data[message.guild.id][1]) == 0 and isChannelValid:
-            print("reaches")
             data[message.guild.id][1] = str(1)
             await message.channel.send(
                 "Turned on all pinned messages forwarding to  " + message.author.guild.get_channel(
@@ -660,9 +662,9 @@ async def on_message(message):
     if message.content.lower() == 'p.servers' and message.guild.id == 715396068157947965 and message.author.id == 454342857239691306:
         guildsJoined = client.guilds
         guildsdesc = '\n'
+        await message.channel.send('Joined Servers: ' + str(len(guildsJoined)))
         for guild in guildsJoined:
-            guildsdesc += guild.name + ": " + str(guild.id) + "\n"
-        await message.channel.send('Joined Servers: ' + str(len(guildsJoined)) + guildsdesc)
+            await message.channel.send(str(guild.id) + " : " + guild.name)
 
     # can only be used my me to get the server photo if anyone wants their server on
     # https://passelbot.wixsite.com/home/featured-servers fixed w/ update
@@ -684,20 +686,21 @@ async def on_message(message):
             msg += '\n'
         embedSend = discord.Embed(
             title="An Important Update Message",
-            description=msg,
+            description=msg + "\n PS: This update may have caused deterioration in the functionality of Passel. "
+                              "Please contact below if you are experiencing anything unusual with Passel.",
             colour=EMBED_COLORS[randomColor]
         )
         embedSend.add_field(name="Help Website", value="https://passelbot.wixsite.com/home", inline=False)
         embedSend.add_field(name="Support Server", value="https://discord.gg/wmSsKCX", inline=False)
         embedSend.set_footer(
-            text="Requested by:" + message.author.name + "\nFor help contact: ¬sanj#2714 or passelBot@gmail.com "
-                                                         "\nCreated on May 26th, 2020")
+            text="\nFor help contact: ¬sanj#2714 or passelBot@gmail.com \nCreated on May 26th, 2020")
 
         i = 0
         updateServerList = list(data.keys())
-        for val in data:
-            updateChannel = int(data[val][2])
-            await client.get_guild(updateServerList[i]).get_channel(updateChannel).send(embed=embedSend)
+        for val in updateServerList:
+            await client.get_guild(updateServerList[i]).get_channel(int(data[updateServerList[i]][2])).send(embed=embedSend)
+            await client.get_guild(715396068157947965).get_channel(715402358913499136).send("sent to " + str(updateServerList[i]))
+            i += 1
 
 
 # The method that takes care of pin updates in a server
@@ -846,7 +849,9 @@ async def on_guild_remove(guild):
     # to the support server saying it has left without setting up
     try:
         data.pop(int(guild.id))
+        print("reaches")
     except:
+        print("no setting up reaches")
         embedleave.set_footer(text="Left without setting up.\nTotal Number of Servers: " + str(len(guildsJoined)))
         await client.get_guild(715396068157947965).get_channel(715627621303582750).send(embed=embedleave)
         return
