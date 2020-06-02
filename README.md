@@ -23,7 +23,7 @@ Also, any channel that has 50 pins should have one message unpinned, and then re
 
 ***Please keep in mind that the bot only pins messages that REACH and EXCEED the limit of 50 pins per channel in discord.***
 
-**If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup**
+***If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup***
 
 **The prerequisites for the bot to work properly are:**
 1. make sure the bot has access to view and type in the channels of the server
