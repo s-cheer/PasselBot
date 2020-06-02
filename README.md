@@ -1,6 +1,10 @@
 # About
 Passel is a discord bot that manages the number of pins in a server. Discord has a pin limit of 50 pins per channel. However with passel, that limit can be bypassed. The following readme will explain how the bot works and how to add and setup the bot in a server.
 
+***Please keep in mind that the bot only pins messages that REACH and EXCEED the limit of 50 pins per channel in discord.***
+
+**If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup**
+
 ![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/PasselColorSmall.png)
 
 # Invite
@@ -19,6 +23,8 @@ Also, any channel that has 50 pins should have one message unpinned, and then re
 
 ***Please keep in mind that the bot only pins messages that REACH and EXCEED the limit of 50 pins per channel in discord.***
 
+**If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup**
+
 **The prerequisites for the bot to work properly are:**
 1. make sure the bot has access to view and type in the channels of the server
 2. unpin one message from channels with 50 pins, and repin that after setup (you can use p.pins to check how many pins are in a chhannel)
@@ -26,15 +32,15 @@ Also, any channel that has 50 pins should have one message unpinned, and then re
 # Setup
 To set up you need to have administrator permissions and meet the pre-requisites above.
 
-1. First create a channel that you want the extra pinned messages in, this channel can be named anything (I will call it pins for the purpose of the readme.md file)
+1. **First create a channel that you want the extra pinned messages in, this channel can be named anything (I will call it pins for the purpose of the readme.md file)**
 
-2. Select a mode you want the mode to be setup in. The modes are as follows:
+2. **Select a mode you want the mode to be setup in. The modes are as follows:**
 
 	> 1. In mode 1, the most recent pinned message is sent into the pins channel, and not pinned into the original channel where the message was pinned in. For example, if "Hello" is the most recent pinned message in a channel, it gets sent into the pins channel and NOT pinned into the orignal channel.
 
 	> 2. In mode 2, the oldest pinned message in a channel is sent into the pins channel and un-pinned, and then the most recently pinned message stays in that channel. For example, if "Hello" is the most recent pinned message, and "Hello World is the oldest pinned message in that same channel. "Hello World" is unpiined and sent into the pins channel, and "Hello" is under the pinned messages in the channel.
 
-3. After you select a mode, simply type this to set up the bot. 
+3. **After you select a mode, simply type this to set up the bot. **
 
 ```p.setup <mode> #channel```
 
@@ -43,10 +49,16 @@ here is an example:
 ```p.setup 1 #pins```
 
 
-4. **[Optional] ** you can use the p.blacklist command in a specific channel to blacklist that channel from having extra pinned messages sent into the pins channel
+4. **[Optional]** you can use the p.blacklist command in a specific channel to blacklist that channel from having extra pinned messages sent into the pins channel
 
 	example:
 	```p.blacklist``` type that in #mod-general if you do not want extra pinned messages from that channel being sent to #pins
+	
+5. **[Optional]** if you want to send all pins to the pins channel, use p.sendall. By deafult all pins do not get sent to the pins channel. You must use p.sendall to turn this on.
+
+	example:
+	```p.sendall``` type that in any channel that the bot has access so that you can send all pins to the pins channel. This is toggleable so you may use this anytime you wish to send all pins or to not send all pins into a channel. 
+	
 
 That concludes setup! If you have any issues please visit the website mentioned above, the website has videos that are easy to follow and set up the bot.
 
@@ -80,6 +92,9 @@ That concludes setup! If you have any issues please visit the website mentioned 
 ```p.changemode <mode>: To change the mode```
 
 ```p.blacklist: Type p.blacklist in a specific channel to blacklist that channel```
+
+```p.sendall: Toggle on and off to send all pinned messages to the pins channel. Make sure to blacklist any channels you don't want the pinned messages going to the pins channel``` 
+
 
 # Images
 The following will show how the bot embeds the pinned messages in a server!
