@@ -114,6 +114,6 @@ Contact information can be found on the website https://passelbot.wixsite.com/ho
 - Email: passelBot@gmail.com
 - Discord User ID: ¬sanj#2714
 
-![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/Images/logoBlackSmall.png)
+![Passel Banner](https://github.com/sanjana0109/PasselBot/blob/master/Images/Passel%20Banner.png)
 
 ### End
