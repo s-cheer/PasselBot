@@ -5,7 +5,7 @@ Passel is a discord bot that manages the number of pins in a server. Discord has
 
 ***If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup***
 
-![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/PasselColorSmall.png)
+![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/Images/logoSmall.png)
 
 # Invite
 The bot can be invited by following this link: https://discord.com/oauth2/authorize?client_id=714899096015732886&permissions=388208&scope=bot 
@@ -100,20 +100,20 @@ That concludes setup! If you have any issues please visit the website mentioned 
 The following will show how the bot embeds the pinned messages in a server!
 
 **When the message is pinned:**
-![Hello World Pin](https://github.com/sanjana0109/PasselBot/blob/master/HelloWorldPin.png)
+![Message World Pin](https://github.com/sanjana0109/PasselBot/blob/master/Images/messagePin.png)
 
-![Image Pin](https://github.com/sanjana0109/PasselBot/blob/master/ImagePin.png)
+![Image Pin](https://github.com/sanjana0109/PasselBot/blob/master/Images/imagePin.png)
 
 **How the pinned embed looks:**
-![Hello World Embed](https://github.com/sanjana0109/PasselBot/blob/master/HelloWorldEmbed.png)
+![Message World Embed](https://github.com/sanjana0109/PasselBot/blob/master/Images/messageEmbed.png)
 
-![Image Embed](https://github.com/sanjana0109/PasselBot/blob/master/ImageEmbed.png)
+![Image Embed](https://github.com/sanjana0109/PasselBot/blob/master/Images/imageEmbed.png)
 
 # Contact
 Contact information can be found on the website https://passelbot.wixsite.com/home
 - Email: passelBot@gmail.com
 - Discord User ID: ¬sanj#2714
 
-![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/PasselBandWSmall.png)
+![Passel Logo Black and White](https://github.com/sanjana0109/PasselBot/blob/master/Images/logoBlackSmall.png)
 
 ### End
