@@ -34,6 +34,7 @@ driveFiles = {}
 data = {}
 SERVICE = ''
 
+# discord embed colors
 EMBED_COLORS = [
     discord.Colour.magenta(),
     discord.Colour.blurple(),
@@ -128,6 +129,7 @@ def fileReadIntoDict(fileName, dictionary, separator):
     f.close()
 
 
+# file writes the data file
 def fileWrite(dictionary, fileName):
     file = open(fileName, "w")
     for val in dictionary:
@@ -181,6 +183,7 @@ async def on_message(message):
         return
 
     # help message
+    # fixed w/ update
     if message.content.lower() == 'p.help':
         randomColor = randrange(len(EMBED_COLORS))
         # reads help data from data.txt file in google drive
@@ -204,6 +207,7 @@ async def on_message(message):
         await message.channel.send(embed=embedHelp)
 
     # info message
+    # fixed w/ update
     if message.content.lower() == 'p.info':
         randomColor = randrange(len(EMBED_COLORS))
         # reads data from info.txt in google drive
@@ -226,6 +230,7 @@ async def on_message(message):
         await message.channel.send(embed=embedInfo)
 
     # invite message
+    # fixed w/ update
     if message.content.lower() == 'p.invite':
         randomColor = randrange(len(EMBED_COLORS))
         embedinvite = discord.Embed(
@@ -239,6 +244,7 @@ async def on_message(message):
         await message.channel.send(embed=embedinvite)
 
     # setup message requires admin perms, can only be used once upon setup
+
     if message.content.lower().startswith("p.setup ") and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -277,15 +283,18 @@ async def on_message(message):
                         if channelID == channel.id:
                             isChannelValid = True
 
-            # sends message if the channel is valid and puts it into the data
+            # sends message if the channel is valid and puts it into the data, middle value is 0
+            # because that is the value for sending all pins to the pins archive channel
             if isChannelValid:
-                data[message.author.guild.id] = ['', '']
-                data[message.author.guild.id] = [str(dataVals[0]), str(channelID)]
+                data[message.author.guild.id] = [str(dataVals[0]), str(0), str(channelID)]
 
                 await message.channel.send("All archived pins will be sent to " + message.author.guild.get_channel(
                     channelID).mention + "\nSetup complete! You can use p.blacklist in a channel to blacklist that channel pins from being sent to " + message.author.guild.get_channel(
-                    channelID).mention + "\nAlso make sure the bot has access to all channels that you want pins to be archived from and " + message.author.guild.get_channel(
-                    channelID).mention + " so that the bot works properly")
+                    channelID).mention + "\n\nAlso make sure the bot has access to all channels that you want pins to be archived from and " + message.author.guild.get_channel(
+                    channelID).mention + "so that the bot works properly \n\n The bot currently will only send pinned "
+                                         "messages that **reach or exceed 50 pinned messages in a channel**, "
+                                         "if you want to send all pinned messages to " +
+                                           message.author.guild.get_channel(channelID).mention + " use p.sendall")
 
                 # writes the data and re-sends to google drive, and deletes from the local storage
                 fileWrite(dictionary=data, fileName="data.txt")
@@ -315,6 +324,7 @@ async def on_message(message):
                 "That is an invalid channel for your server, try again. Contact ¬sanj#2714 or passelBot@gmail.com for help if you are having trouble.")
 
     # setup message information, requires admin perms, can only be used until bot is set up
+    # fixed w/ update
     if message.content.lower() == 'p.setup' and discord.abc.GuildChannel.permissions_for(member=message.author,
                                                                                          self=message.author).administrator:
 
@@ -346,6 +356,7 @@ async def on_message(message):
         return
 
     # black-lists channels, command should be used in the channel that you want to blacklist
+    # fixed w/ update
     if message.content.lower() == 'p.blacklist' and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -415,6 +426,7 @@ async def on_message(message):
             await message.channel.send("Invalid channel.")
 
     # changes the channel where pins are directed to
+    # fixed w/ update
     if message.content.lower().startswith("p.changechannel ") and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -436,7 +448,7 @@ async def on_message(message):
                             isChannelValid = True
 
             if isChannelValid:
-                data[message.author.guild.id][1] = channelID
+                data[message.author.guild.id][2] = channelID
 
                 await message.channel.send("Changed channel to " + message.author.guild.get_channel(channelID).mention)
 
@@ -467,6 +479,7 @@ async def on_message(message):
             await message.channel.send("Invalid channel, try again.")
 
     # changes the mode in which the pins are setup in the server
+    # fixed w/ update
     if message.content.lower().startswith("p.changemode ") and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -514,6 +527,7 @@ async def on_message(message):
             await message.channel.send("Invalid mode, try again.")
 
     # shows which channel is currently set up
+    # fixed w/ update
     if message.content.lower() == "p.channel" and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -524,12 +538,12 @@ async def on_message(message):
 
         isChannelValid = False
 
-        # checks to see if the set up channel still exisits
+        # checks to see if the set up channel still exists
         for guild in client.guilds:
             if message.guild == guild:
                 channelList = message.guild.channels
                 for channel in channelList:
-                    if int(data[message.author.guild.id][1]) == int(channel.id):
+                    if int(data[message.author.guild.id][2]) == int(channel.id):
                         isChannelValid = True
 
         if not isChannelValid:
@@ -538,9 +552,10 @@ async def on_message(message):
             return
 
         await message.channel.send("The channel you have set up is: " + message.author.guild.get_channel(
-            int(data[message.author.guild.id][1])).mention)
+            int(data[message.author.guild.id][2])).mention)
 
     # shows the mode the server is set up in
+    # fixed w/ update
     if message.content.lower() == "p.mode" and discord.abc.GuildChannel.permissions_for(
             member=message.author, self=message.author).administrator:
 
@@ -552,12 +567,96 @@ async def on_message(message):
         await message.channel.send("The mode you have setup is: " + str(data[message.author.guild.id][0]))
 
     # sends the number of pins in a channel in a server
+    # fixed w/ update
     if message.content.lower() == 'p.pins':
         numPins = await message.channel.pins()
         await message.channel.send(message.channel.mention + " has " + str(len(numPins)) + " pins.")
 
-    # can only be used by me in the passel support server to see the names and IDs of the joined servers, simple replace
+    # toggles the option to send all pins to the pins archive channel on or off
+    if message.content.lower() == 'p.sendall' and discord.abc.GuildChannel.permissions_for(
+            member=message.author, self=message.author).administrator:
+
+        # checks to see if the bot is setup
+        if str(message.author.guild.id) not in str(data):
+            await message.channel.send("You have not set up the bot, use p.setup")
+            return
+
+        isChannelValid = False
+
+        # checks to see if the set up channel still exists
+        for guild in client.guilds:
+            if message.guild == guild:
+                channelList = message.guild.channels
+                for channel in channelList:
+                    if int(data[message.author.guild.id][2]) == int(channel.id):
+                        isChannelValid = True
+
+        if not isChannelValid:
+            await message.channel.send("Channel during setup has been deleted or the bot does not access to it. Use "
+                                       "p.changechannel <#channel> to use a different channel")
+            return
+
+        # changes so that all pins can be sent
+        if int(data[message.guild.id][1]) == 0 and isChannelValid:
+            print("reaches")
+            data[message.guild.id][1] = str(1)
+            await message.channel.send(
+                "Turned on all pinned messages forwarding to  " + message.author.guild.get_channel(
+                    int(data[message.author.guild.id][2])).mention)
+
+            # re-writes file data and uploads to google drive
+            fileWrite(dictionary=data, fileName="data.txt")
+            file_metadata = {'name': 'data.txt'}
+
+            media = MediaFileUpload('data.txt',
+                                    mimetype='text/plain')
+
+            file = SERVICE.files().create(body=file_metadata,
+                                          media_body=media,
+                                          fields='id').execute()
+
+            SERVICE.files().delete(fileId=driveFiles['data.txt']).execute()
+
+            driveFiles['data.txt'] = file.get('id')
+
+            if os.path.exists("data.txt"):
+                os.remove("data.txt")
+            else:
+                print("The file does not exist")
+
+            return
+
+        if int(data[message.guild.id][1]) == 1 and isChannelValid:
+            data[message.guild.id][1] = str(0)
+            await message.channel.send(
+                "Turned off all pinned messages forwarding to " + message.author.guild.get_channel(
+                    int(data[message.author.guild.id][2])).mention)
+
+            # re-writes file data and uploads to google drive
+            fileWrite(dictionary=data, fileName="data.txt")
+            file_metadata = {'name': 'data.txt'}
+
+            media = MediaFileUpload('data.txt',
+                                    mimetype='text/plain')
+
+            file = SERVICE.files().create(body=file_metadata,
+                                          media_body=media,
+                                          fields='id').execute()
+
+            SERVICE.files().delete(fileId=driveFiles['data.txt']).execute()
+
+            driveFiles['data.txt'] = file.get('id')
+
+            if os.path.exists("data.txt"):
+                os.remove("data.txt")
+            else:
+                print("The file does not exist")
+
+            return
+
+    # can only be used by me in the passel support server to see the names and IDs of the joined servers, simply replace
     # author and guild id if you want the code to work for you as well.
+    # fixed w/ update
     if message.content.lower() == 'p.servers' and message.guild.id == 715396068157947965 and message.author.id == 454342857239691306:
         guildsJoined = client.guilds
         guildsdesc = '\n'
@@ -565,9 +664,41 @@ async def on_message(message):
             guildsdesc += guild.name + ": " + str(guild.id) + "\n"
         await message.channel.send('Joined Servers: ' + str(len(guildsJoined)) + guildsdesc)
 
-    # can only be used my me to get the server photo if anyone wants their server on https://passelbot.wixsite.com/home/featured-servers
+    # can only be used my me to get the server photo if anyone wants their server on
+    # https://passelbot.wixsite.com/home/featured-servers fixed w/ update
     if message.content.lower() == 'p.serverphoto' and message.author.id == 454342857239691306:
         await message.channel.send(str(message.guild.icon_url))
+
+    # can only be used by me in the passel support server to send update messages to the servers the bot is in
+    # change author and guild id if you want the code to work for you as well.
+    if message.content.lower() == 'p.update' and message.guild.id == 715396068157947965 and message.author.id == 454342857239691306:
+        print("reaches")
+        randomColor = randrange(len(EMBED_COLORS))
+        # reads data from info.txt in google drive
+        dataUpdate = str(SERVICE.files().get_media(fileId=driveFiles['update.txt']).execute())
+        length = len(dataUpdate)
+        dataStripped = dataUpdate[2: length - 1]
+        msg = ''
+        for elem in dataStripped.split('\\n'):
+            msg += elem
+            msg += '\n'
+        embedSend = discord.Embed(
+            title="An Important Update Message",
+            description=msg,
+            colour=EMBED_COLORS[randomColor]
+        )
+        embedSend.add_field(name="Help Website", value="https://passelbot.wixsite.com/home", inline=False)
+        embedSend.add_field(name="Support Server", value="https://discord.gg/wmSsKCX", inline=False)
+        embedSend.set_footer(
+            text="Requested by:" + message.author.name + "\nFor help contact: ¬sanj#2714 or passelBot@gmail.com "
+                                                         "\nCreated on May 26th, 2020")
+
+        i = 0
+        updateServerList = list(data.keys())
+        for val in data:
+            updateChannel = int(data[val][2])
+            await client.get_guild(updateServerList[i]).get_channel(updateChannel).send(embed=embedSend)
+
 
 # The method that takes care of pin updates in a server
 @client.event
@@ -578,15 +709,17 @@ async def on_guild_channel_pins_update(channel, last_pin):
         numPins = await channel.pins()
         guildpinnedID = channel.guild.id
         guildMode = int(data[guildpinnedID][0])
-        guildChannel = data[guildpinnedID][1]
+        sendall = int(data[guildpinnedID][1])
+        guildChannel = data[guildpinnedID][2]
 
+        # checks to see if message is in the blacklist
         # message is only sent if there is a blacklisted server with 50 messages pinned, informs them
         # that passel is in the server and they can un-blacklist the channel to have passel work
-        if len(data[guildpinnedID]) > 2:
-            pinnedChannelList = data[guildpinnedID][2:]
+        if len(data[guildpinnedID]) > 3:
+            pinnedChannelList = data[guildpinnedID][3:]
             if str(channel.id) in pinnedChannelList:
-                await channel.send("Reached limit, un-blacklist this channel and remove 50th pin and repin 50th pin "
-                                   "to archive extra pins. p.help for more information")
+                # await channel.send("Reached limit, un-blacklist this channel and remove 50th pin and repin 50th pin "
+                #                   "to archive extra pins. p.help for more information")
                 return
 
         isChannelThere = False
@@ -602,13 +735,35 @@ async def on_guild_channel_pins_update(channel, last_pin):
         # checks to see if pins channel exists or has been deleted
         if not isChannelThere:
             await channel.send("Check to see if the pins archive channel during setup has been deleted. (with the "
-                               "channel ID " + str(guildChannel) + "use p.changechannel <channel> to setup a new "
+                               "channel ID " + str(guildChannel) + "use p.changechannel <#channel> to setup a new "
                                                                    "channel")
             return
 
-        # if guild mode is one does the process following mode 1
+        # only happens if send all is toggled on
+        if len(numPins) < 50 and sendall == 1:
+            last_pinned = numPins[0]
+            pinEmbed = discord.Embed(
+                title="Sent by " + last_pinned.author.name,
+                description="\"" + last_pinned.content + "\"",
+                colour=EMBED_COLORS[randomColor]
+            )
+            # checks to see if pinned message has attachments
+            attachments = last_pinned.attachments
+            if len(attachments) >= 1:
+                pinEmbed.set_image(url=attachments[0].url)
+            pinEmbed.add_field(name="Jump", value=last_pinned.jump_url, inline=False)
+            pinEmbed.set_footer(
+                text="sent in: " + last_pinned.channel.name + " - at: " + str(last_pinned.created_at))
+            pinEmbed.set_author(name=last_pinned.author.name, url=last_pinned.author.avatar_url,
+                                icon_url=last_pinned.author.avatar_url)
+            await channel.guild.get_channel(int(guildChannel)).send(embed=pinEmbed)
+            await last_pinned.channel.send(
+                "See pinned message in " + channel.guild.get_channel(int(guildChannel)).mention)
+
+            # if guild mode is one does the process following mode 1
         if guildMode == 1:
             last_pinned = numPins[len(numPins) - 1]
+            # sends extra messages
             if len(numPins) == 50:
                 last_pinned = numPins[0]
                 pinEmbed = discord.Embed(
