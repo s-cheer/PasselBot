@@ -3,7 +3,7 @@ Passel is a discord bot that manages the number of pins in a server. Discord has
 
 ***Please keep in mind that the bot only pins messages that REACH and EXCEED the limit of 50 pins per channel in discord.***
 
-**If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup**
+***If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup***
 
 ![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/PasselColorSmall.png)
 
