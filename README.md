@@ -5,6 +5,10 @@ Passel is a discord bot that manages the number of pins in a server. Discord has
 
 ***If you want to pin ALL messages, use p.sendall AFTER setting up the bot, follow instructions below to setup***
 
+Top.gg
+
+[![Discord Bots](https://top.gg/api/widget/714899096015732886.svg)](https://top.gg/bot/714899096015732886)
+
 ![Passel Logo Color](https://github.com/sanjana0109/PasselBot/blob/master/Images/logoSmall.png)
 
 # Invite
