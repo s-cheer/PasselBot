@@ -31,8 +31,7 @@ from discord.ext import commands
 #
 #        Furthermore: the p.sendall feature described later in the code allows the user to set
 #        Passel so that all pinned messages get sent to the pins archive channel.
-
-client = discord.Client(status='Online')
+client = commands.Bot(command_prefix='p.', status='Online')
 
 globals()
 driveFiles = {}
@@ -897,7 +896,6 @@ async def on_guild_remove(guild):
     else:
         print("The file does not exist")
 
-#bot = commands.Bot
-#bot.add_cog(TopGG(bot))
-
+client.add_cog(TopGG(client))
+#generates error AttributeError: type object 'Bot' has no attribute 'loop' from line 109
 client.run('TOKEN')
