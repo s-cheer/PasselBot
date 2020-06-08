@@ -2,12 +2,14 @@ import discord
 import pickle
 import os.path
 import os
+import dbl
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient.http import MediaFileUpload
 from random import randrange
+from discord.ext import commands
 
 # Author: Sanjana (¬sanj#2714) discord user
 # Created: 26 MAY 2020
@@ -96,6 +98,20 @@ def main():
         print('Files:')
         for item in items:
             driveFiles[item['name']] = item['id']
+
+
+# used to autoupdate number of servers in https://top.gg/bot/714899096015732886
+class TopGG(commands.Cog):
+
+    def __init__(self, bot):
+        bot = commands.Bot
+        self.bot = bot
+        self.token = 'TOKEN'
+        self.dblpy = dbl.DBLClient(self.bot, self.token,
+                                   autopost=True)  # Autopost will post your guild count every 30 minutes
+
+    async def on_guild_post(self):
+        print("Server count posted successfully")
 
 
 # reads thhe data files from Google drive. Data file is a .txt file stored
@@ -698,8 +714,10 @@ async def on_message(message):
         i = 0
         updateServerList = list(data.keys())
         for val in updateServerList:
-            await client.get_guild(updateServerList[i]).get_channel(int(data[updateServerList[i]][2])).send(embed=embedSend)
-            await client.get_guild(715396068157947965).get_channel(715402358913499136).send("sent to " + str(updateServerList[i]))
+            await client.get_guild(updateServerList[i]).get_channel(int(data[updateServerList[i]][2])).send(
+                embed=embedSend)
+            await client.get_guild(715396068157947965).get_channel(715402358913499136).send(
+                "sent to " + str(updateServerList[i]))
             i += 1
 
 
@@ -879,5 +897,7 @@ async def on_guild_remove(guild):
     else:
         print("The file does not exist")
 
+#bot = commands.Bot
+#bot.add_cog(TopGG(bot))
 
 client.run('TOKEN')
