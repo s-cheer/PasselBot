@@ -775,7 +775,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
         if len(numPins) < 50 and sendall == 1:
             last_pinned = numPins[0]
             pinEmbed = discord.Embed(
-                title="Sent by " + last_pinned.author.name,
+                # title="Sent by " + last_pinned.author.name,
                 description="\"" + last_pinned.content + "\"",
                 colour=EMBED_COLORS[randomColor]
             )
@@ -786,7 +786,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
             pinEmbed.add_field(name="Jump", value=last_pinned.jump_url, inline=False)
             pinEmbed.set_footer(
                 text="sent in: " + last_pinned.channel.name + " - at: " + str(last_pinned.created_at))
-            pinEmbed.set_author(name=last_pinned.author.name, url=last_pinned.author.avatar_url,
+            pinEmbed.set_author(name='Sent by ' + last_pinned.author.name, url=last_pinned.author.avatar_url,
                                 icon_url=last_pinned.author.avatar_url)
             await channel.guild.get_channel(int(guildChannel)).send(embed=pinEmbed)
             await last_pinned.channel.send(
@@ -799,7 +799,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
             if len(numPins) == 50:
                 last_pinned = numPins[0]
                 pinEmbed = discord.Embed(
-                    title="Sent by " + last_pinned.author.name,
+                    # title="Sent by " + last_pinned.author.name,
                     description="\"" + last_pinned.content + "\"",
                     colour=EMBED_COLORS[randomColor]
                 )
@@ -810,7 +810,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
                 pinEmbed.add_field(name="Jump", value=last_pinned.jump_url, inline=False)
                 pinEmbed.set_footer(
                     text="sent in: " + last_pinned.channel.name + " - at: " + str(last_pinned.created_at))
-                pinEmbed.set_author(name=last_pinned.author.name, url=last_pinned.author.avatar_url,
+                pinEmbed.set_author(name='Sent by ' + last_pinned.author.name, url=last_pinned.author.avatar_url,
                                     icon_url=last_pinned.author.avatar_url)
                 await channel.guild.get_channel(int(guildChannel)).send(embed=pinEmbed)
                 await last_pinned.channel.send(
@@ -823,7 +823,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
             if len(numPins) == 50:
                 last_pinned = numPins[len(numPins) - 1]
                 pinEmbed = discord.Embed(
-                    title="Sent by " + last_pinned.author.name,
+                    # title="Sent by " + last_pinned.author.name,
                     description="\"" + last_pinned.content + "\"",
                     colour=EMBED_COLORS[randomColor]
                 )
@@ -834,7 +834,7 @@ async def on_guild_channel_pins_update(channel, last_pin):
                 pinEmbed.add_field(name="Jump", value=last_pinned.jump_url, inline=False)
                 pinEmbed.set_footer(
                     text="sent in: " + last_pinned.channel.name + " - at: " + str(last_pinned.created_at))
-                pinEmbed.set_author(name=last_pinned.author.name, url=last_pinned.author.avatar_url,
+                pinEmbed.set_author(name='Sent by ' + last_pinned.author.name, url=last_pinned.author.avatar_url,
                                     icon_url=last_pinned.author.avatar_url)
                 await last_pinned.guild.get_channel(int(guildChannel)).send(embed=pinEmbed)
                 await last_pinned.channel.send(
@@ -905,6 +905,7 @@ async def on_guild_remove(guild):
         os.remove("data.txt")
     else:
         print("The file does not exist")
+
 
 client.add_cog(TopGG(client))
 client.run('TOKEN')
