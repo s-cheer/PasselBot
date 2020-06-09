@@ -97,6 +97,8 @@ That concludes setup! If you have any issues please visit the website mentioned 
 
 ```p.sendall: Toggle on and off to send all pinned messages to the pins channel. Make sure to blacklist any channels you don't want the pinned messages going to the pins channel``` 
 
+```p.vote: To upvote the bot on top.gg```
+
 
 # Images
 The following will show how the bot embeds the pinned messages in a server!
