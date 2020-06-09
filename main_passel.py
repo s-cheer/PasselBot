@@ -103,7 +103,6 @@ def main():
 class TopGG(commands.Cog):
 
     def __init__(self, bot):
-        bot = commands.Bot
         self.bot = bot
         self.token = 'TOKEN'
         self.dblpy = dbl.DBLClient(self.bot, self.token,
