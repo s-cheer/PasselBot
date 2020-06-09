@@ -180,7 +180,7 @@ fileReadIntoDict(fileName="data.txt", dictionary=data, separator=" : ")
 @client.event
 async def on_ready():
     await client.change_presence(
-        activity=discord.Game(name='p.help | Visit https://passelbot.wixsite.com/home for help'))
+        activity=discord.Game(name='p.help | p.vote | p.setup'))
     print('We have logged in as {0.user}'.format(client))
 
 
@@ -219,9 +219,21 @@ async def on_message(message):
         )
         embedHelp.add_field(name="Help Website", value="https://passelbot.wixsite.com/home", inline=False)
         embedHelp.add_field(name="Support Server", value="https://discord.gg/wmSsKCX", inline=False)
+        embedHelp.add_field(name="Top.gg (Please Vote!)", value="https://top.gg/bot/714899096015732886", inline=False)
         embedHelp.set_footer(
             text="Requested by:" + message.author.name + "\nFor help contact: ¬sanj#2714 or passelBot@gmail.com")
         await message.channel.send(embed=embedHelp)
+
+    # vote command
+    if message.content.lower() == 'p.vote':
+        randomColor = randrange(len(EMBED_COLORS))
+        embedVote = discord.Embed(
+            title='Click here to vote!',
+            colour=EMBED_COLORS[randomColor],
+            url="https://top.gg/bot/714899096015732886/vote"
+        )
+        embedVote.set_footer(text='Please vote on top.gg!')
+        await message.channel.send(embed=embedVote)
 
     # info message
     # fixed w/ update
@@ -242,6 +254,7 @@ async def on_message(message):
         )
         embedInfo.add_field(name="Help Website", value="https://passelbot.wixsite.com/home", inline=False)
         embedInfo.add_field(name="Support Server", value="https://discord.gg/wmSsKCX", inline=False)
+        embedInfo.add_field(name="Top.gg (Please Vote!)", value="https://top.gg/bot/714899096015732886", inline=False)
         embedInfo.set_footer(
             text="Requested by:" + message.author.name + "\nFor help contact: ¬sanj#2714 or passelBot@gmail.com \nCreated on May 26th, 2020")
         await message.channel.send(embed=embedInfo)
@@ -865,9 +878,7 @@ async def on_guild_remove(guild):
     # to the support server saying it has left without setting up
     try:
         data.pop(int(guild.id))
-        print("reaches")
     except:
-        print("no setting up reaches")
         embedleave.set_footer(text="Left without setting up.\nTotal Number of Servers: " + str(len(guildsJoined)))
         await client.get_guild(715396068157947965).get_channel(715627621303582750).send(embed=embedleave)
         return
@@ -896,5 +907,4 @@ async def on_guild_remove(guild):
         print("The file does not exist")
 
 client.add_cog(TopGG(client))
-#generates error AttributeError: type object 'Bot' has no attribute 'loop' from line 109
 client.run('TOKEN')
